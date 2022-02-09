@@ -1,0 +1,112 @@
+{% extends 'cases/base.html' %}
+{% block content%}
+{% csrf_token %}
+<div class='container-fluid mx-auto my-5 justify-content-center align-items-start'>
+    <div class='row justify-content-center'>
+        <div class='col-lg-10 text-white bg-secondary border border-2 rounded border-dark shadow mb-2'>
+            <h4 class='text-white my-1'>Case {{case.case_number}}</h4>
+        </div>
+    <div class='row justify-content-center'>
+            <div class='col-lg-5 border border-2 border-secondary mx-2 mb-2'>
+                <h6 class='my-1'>Order Number</h6>
+                <p>{{case.order_number}}</p>
+                <hr class='hr'>
+                <h6 class='my-1'>Date Created</h6>
+                <p>{{case.date}}</p>                    
+            </div>
+            <div class='col-lg-5 border border-2 border-secondary mx-2 mb-2'>
+                <h6 class='my-1'>RMA Type</h6>
+                <p>{{case.get_rma_type_display}}</p>
+                <hr class='hr'>
+                <h6 class='my-1'>Status</h6>
+                <p>{{case.get_status_display}}</p>
+            </div>
+    </div>
+    </div>
+    <div class='row justify-content-center'>
+        <div class='col-lg-10 border border-2 border-secondary mx-2 mb-2'>
+            <h5 class='mt-2 mb-1'>RMA Info</h5>
+            <hr class='hr'>
+            <div class='row'>
+                <div class='col-md-4 '>
+                    <h6 class='my-1'>RMA Type</h6>
+                    <p>{{case.get_rma_type_display}}</p> 
+                </div>
+                <div class='col-md-4 '>
+                    <h6 class='my-1'>RMA Type</h6>
+                    <p>{{case.get_rma_type_display}}</p> 
+                </div>
+                <div class='col-md-4 '>
+                    <h6 class='my-1'>RMA Type</h6>
+                    <p>{{case.get_rma_type_display}}</p> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='row justify-content-center'>
+        <div class='col-lg-10 border border-2 border-secondary mx-2 mb-2'>
+            <h5 class='mt-2 mb-1'>Part Info</h5>
+            <hr class='hr'>
+            <div class='row'>
+                <div class='col-md-6'>
+                    <h6 class='my-1'>Part Type</h6>
+                    <p>{{case.part}}</p> 
+                </div>
+                <div class='col-md-6'>
+                    <h6 class='my-1'>Return Label?</h6>
+                    <input class='form-check-input' type='checkbox' {%if case.return_label%}checked {%endif%} disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='row justify-content-center'>
+        <div class='col-lg-10 border border-2 border-secondary mx-2 mb-2'>
+            <h5 class='mt-2 mb-1'>Tracking Info</h5>
+            <hr class='hr'>
+            <div class='row'>
+                <div class='col-md-6'>
+                    <h6 class='my-1'>Carrier</h6>
+                    <p>{{case.carrier}}</p> 
+                </div>
+                <div class='col-md-6'>
+                    <h6 class='my-1'>Tracking Number</h6>
+                    <p>{{case.tracking_number}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='row justify-content-center'>
+        <div class='col-lg-10 border border-2 border-secondary mx-2 mb-2'>
+            <h5 class='mt-2 mb-1'>Message Info</h5>
+            <hr class='hr'>
+            <div class='row'>
+                <div class='col-md-6'>
+                    <h6 class='my-1'>Date Created</h6>
+                    <pre class='border border-2 border-dark'>{{case.message}}</pre> 
+                </div>
+                <div class='col-md-6'>
+                    <h6 class='my-1'>Processed?</h6>
+                    <input class='form-check-input mr-4' type='checkbox' {%if case.case_processed%}checked {%endif%} disabled>
+                    <button class='btn btn-sm btn-primary mx-4' type='button'{%if case.case_processed%}disabled {%endif%}><a href="{% url 'cases:update' case.case_number %}" class='text-white justify-center my-auto'> Process Case</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='row justify-content-center'>
+        <div class='col-lg-10 border border-2 border-secondary mx-2 mb-2'>
+            <h5 class='mt-2 mb-1'>Timeline</h5>
+            <hr class='hr'>
+            <div class='row'>
+                <div class='col-md-6'>
+                    <h6 class='my-1'>Date Created</h6>
+                    <p>{{case.date}}</p> 
+                </div>
+                <div class='col-md-6'>
+                    <h6 class='my-1'>Age</h6>
+                    <p>{{case.age}} Days</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

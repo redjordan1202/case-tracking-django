@@ -1,0 +1,49 @@
+{% extends 'cases/base.html' %}
+{% block content%}
+{% csrf_token %}
+<div class='container-fluid mx-auto my-5 justify-content-center align-items-start'>
+    <div class='row justify-content-center'>
+        <div class='col-lg-10 bg-secondary text-white border border-2 rounded border-dark shadow'>
+            <h4 class='text-white'>Process Cases</h4>
+        </div>
+    </div>
+    <form action="{% url 'cases:generate' %}" method='post'>
+        {% csrf_token %}
+        <div class='row flex justify-content-center'>
+            <div class='col-lg-10 my-2 flex justify-content-center border border-2 border-dark rounded'>
+                <h6 class='mt-2 mb-1'>Case Number</h6>
+                <input class='form-control mx-auto' type="text" id='case-input' name='cases-process' placeholder='Enter Case Numbers here..'>
+                <p class='text-center'>Sperate Cases with comma</p>
+            </div>
+        </div>
+        <div class='row flex justify-content-center'>
+            <div class='col-lg-10 my-2 flex justify-content-center border border-2 border-dark rounded'>
+                <h6 class='my-2'>Process Options</h6>
+            </div>
+        </div>
+        <div class='row flex justify-content-center '>
+            <div class='col-lg-5 my-2 mx-1 border border-2 border-dark rounded d-flex justify-content-center flex-column'>
+                <div class='d-flex justify-content-center'>
+                    <input class='form-check-input' type="radio" name='process' value='False'>
+                    <label class='form-check-label float-right'  for="import">Import Cases</label>
+                </div>
+                <hr>
+                <p class='text-center'>Use this option to import cases that have already been process</p>
+            </div>
+            <div class='col-lg-5 my-2 mx-1 border border-2 border-dark rounded d-flex justify-content-center flex-column'>
+                <div class='d-flex justify-content-center'>
+                    <input class='form-check-input' type="radio" name='process' value='True' checked>
+                    <label class='form-check-label float-right'  for="import">Process Cases</label>
+                </div>
+                <hr>
+                <p class='text-center'>Use this option to process new cases</p>
+            </div>
+        </div>
+        <div class='row flex justify-content-center'>
+            <div class='col-lg-10 my-2 d-flex justify-content-center'>
+                <button class='btn btn-primary' type='submit'>Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

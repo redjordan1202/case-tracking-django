@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        {%load static%}
+        <link rel="stylesheet" type='text/css' href="{% static 'cases/style.css' %}">
+        {%load bootstrap5%}
+        {% bootstrap_css%}
+        {% bootstrap_javascript%}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    </head>
+
+    <header>
+        <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark ">
+            <a class="navbar-brand px-2" href='{% url 'home_page:index' %}'>Home</a>
+            <button class='navbar-toggler mx-2' type='button' data-toggle='collapse' data-target='#navbar'>
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class='collapse navbar-collapse' id='navbar'>
+                <ul class='navbar-nav mr-auto mx-2'>
+                    <li class='nav-item dropdown show'>
+                        <a class='nav-link dropdown-toggle' href="#" id='case_nav_dropdown' role='button' data-toggle='dropdown'>
+                        Cases
+                        </a>
+                        <div class='dropdown-menu'>
+                            <a class='dropdown-item' href="{% url 'cases:cases'%}">Case List</a>
+                            <a class='dropdown-item' href="{% url 'cases:unsent'%}">Unsent Cases</a>
+                            <a class='dropdown-item' href="{% url 'cases:process'%}">Process New Cases</a>
+                        </div>
+                    </li>
+                    <li class='nav-item active'><a class='nav-link' href="#">Inventory</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+{% csrf_token %}
+    <body id="bootstrap-overrides"> 
+        
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
+    </body>
+
+</html>
